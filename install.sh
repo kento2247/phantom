@@ -1,8 +1,7 @@
-eval "$(conda shell.bash hook)"
 # ######################## Phantom Env ###############################
-conda create -n phantom python=3.10 -y
-conda activate phantom
-conda install nvidia/label/cuda-12.1.0::cuda-toolkit -c nvidia/label/cuda-12.1.0 -y
+uv venv --python 3.10.0
+source .venv/bin/activate
+pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
 
 # Install SAM2
 cd submodules/sam2
@@ -13,7 +12,7 @@ cd ../..
 cd submodules/phantom-hamer
 pip install -e .\[all\]
 pip install -v -e third-party/ViTPose
-wget https://www.cs.utexas.edu/~pavlakos/hamer/data/hamer_demo_data.tar.gz
+aria2c -x10 -s10 -k1M https://www.cs.utexas.edu/~pavlakos/hamer/data/hamer_demo_data.tar.gz
 tar --warning=no-unknown-keyword --exclude=".*" -xvf hamer_demo_data.tar.gz
 cd ../..
 
@@ -58,10 +57,10 @@ pip install -e .
 
 # Download sample data
 cd data/raw
-wget https://download.cs.stanford.edu/juno/phantom/pick_and_place.zip
+aria2c -x10 -s10 -k1M https://download.cs.stanford.edu/juno/phantom/pick_and_place.zip
 unzip pick_and_place.zip
 rm pick_and_place.zip
-wget https://download.cs.stanford.edu/juno/phantom/epic.zip
+aria2c -x10 -s10 -k1M https://download.cs.stanford.edu/juno/phantom/epic.zip
 unzip epic.zip
 rm epic.zip
 cd ../..

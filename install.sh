@@ -1,17 +1,20 @@
 # ######################## Phantom Env ###############################
 uv venv --python 3.10.0
 source .venv/bin/activate
+uv pip install -U pip setuptools wheel build
+
+# install torch for cuda 11.8
 uv pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
 
 # Install SAM2
 cd submodules/sam2
-uv pip install -v -e ".[notebooks]"
+uv pip install  --no-build-isolation -v -e ".[notebooks]"
 cd ../..
 
 # Install Hamer
 cd submodules/phantom-hamer
-uv pip install -e .\[all\]
-uv pip install -v -e third-party/ViTPose
+uv pip install  --no-build-isolation -e .\[all\]
+uv pip install  --no-build-isolation -v -e third-party/ViTPose
 aria2c -x10 -s10 -k1M https://www.cs.utexas.edu/~pavlakos/hamer/data/hamer_demo_data.tar.gz
 tar --warning=no-unknown-keyword --exclude=".*" -xvf hamer_demo_data.tar.gz
 cd ../..
@@ -23,12 +26,12 @@ uv pip install numpy==1.26.4
 
 # Install phantom-robosuite
 cd submodules/phantom-robosuite
-uv pip install -e .
+uv pip install  --no-build-isolation -e .
 cd ../..
 
 # Install phantom-robomimic
 cd submodules/phantom-robomimic
-uv pip install -e .
+uv pip install  --no-build-isolation -e .
 cd ../..
 
 # Install additional packages
@@ -48,11 +51,11 @@ gdown --fuzzy https://drive.google.com/file/d/10wGdKSUOie0XmCr8SQ2A2FeDe-mfn5w3/
 cd ../..
 
 # Install phantom-E2FGVI
-uv pip install -e .
+uv pip install  --no-build-isolation -e .
 cd ../..
 
 # Install phantom 
-uv pip install -e .
+uv pip install  --no-build-isolation -e .
 
 # Download sample data
 cd data/raw

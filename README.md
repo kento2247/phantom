@@ -49,6 +49,10 @@ git clone --recursive git@github.com:MarionLepert/phantom.git
 2. Run the following script from the root directory to install the required conda environment.
 
 ```bash
+docker build -t cuda121-uv .
+./enter_docker.sh
+
+# inside docker
 ./install.sh
 ```
 
@@ -59,17 +63,15 @@ git clone --recursive git@github.com:MarionLepert/phantom.git
 Process **Phantom** sample data (manually collected in-lab videos)
 
 ```bash
-conda activate phantom
-
-python process_data.py demo_name=pick_and_place data_root_dir=../data/raw processed_data_root_dir=../data/processed mode=all
+cd phantom
+uv run python process_data.py demo_name=pick_and_place data_root_dir=../data/raw processed_data_root_dir=../data/processed mode=all
 ```
 
 Process **Masquerade** sample data ([Epic Kitchens](https://epic-kitchens.github.io/2025) video)
 
 ```bash
-conda activate phantom
-
-python process_data.py demo_name=epic data_root_dir=../data/raw processed_data_root_dir=../data/processed mode=all --config-name=epic
+cd phantom
+uv run python process_data.py demo_name=epic data_root_dir=../data/raw processed_data_root_dir=../data/processed mode=all --config-name=epic
 ```
 
 ## Codebase Overview

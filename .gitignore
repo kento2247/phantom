@@ -9,6 +9,3 @@ data/processed/*
 *.pth
 outputs/*
 phantom/outputs/*
-
-epic
-pick_and_place

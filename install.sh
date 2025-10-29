@@ -4,7 +4,7 @@ source .venv/bin/activate
 uv pip install -U pip setuptools wheel build
 
 # install torch for cuda 11.8
-uv pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu118
+uv pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
 
 # Install SAM2
 cd submodules/sam2
@@ -21,7 +21,7 @@ cd ../..
 
 # Install mmcv
 uv pip install mmcv==1.3.9
-uv pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu118/torch2.1/index.html
+uv pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu121/torch2.1/index.html
 uv pip install numpy==1.26.4
 
 # Install phantom-robosuite
@@ -58,6 +58,7 @@ cd ../..
 uv pip install  --no-build-isolation -e .
 
 # Download sample data
+mkdir -p data/raw
 cd data/raw
 aria2c -x10 -s10 -k1M https://download.cs.stanford.edu/juno/phantom/pick_and_place.zip
 unzip pick_and_place.zip

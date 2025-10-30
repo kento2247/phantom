@@ -49,11 +49,12 @@ git clone --recursive git@github.com:MarionLepert/phantom.git
 2. Run the following script from the root directory to install the required conda environment.
 
 ```bash
-docker build -t cuda121-uv .
 ./enter_docker.sh
 
 # inside docker
 ./install.sh
+# download data
+./download_data.sh
 ```
 
 3. Download the MANO hand models. To do so, go to the [MANO website](https://mano.is.tue.mpg.de/) and register to be able to download the models. Download the left and right hand models and move MANO_LEFT.pkl and MANO_RIGHT.pkl inside the `$ROOT_DIR/submodules/phantom-hamer/_DATA/data/mano/` folder.

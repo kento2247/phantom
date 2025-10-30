@@ -28,6 +28,8 @@ RUN apt-get update && apt-get install -y \
     libgl1 libglu1-mesa libgl1-mesa-glx libegl1 \
     libx11-6 libxext6 libxrender1 freeglut3 libosmesa6
 
+RUN apt-get update && apt-get install -y ffmpeg
+
 # uv インストール
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 
